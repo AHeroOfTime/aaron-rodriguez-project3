@@ -65,31 +65,49 @@ function App() {
   };
 
   return (
-    <div className="App wrapper">
-      <h1>Random Speedgame Selector</h1>
-      {/* put form/button in its own compontent? or conditional render if data is in array? */}
-      <form onSubmit={getData}>
-        <button type="submit">Get new speedgame!</button>
-      </form>
+    <div className="App">
+      <header>
+        <h1>Random Speedgame Selector</h1>
+      </header>
 
-      <div className="game-info">
-        {Object.keys(randomGame).length ? (
-          <Game randomGame={randomGame} />
-        ) : (
-          <p className="introText">
-            Hello friend! The point of this application is to help you find a
-            new speedgame. All you have to do is hit the button above and a
-            random game will be selected for you.
-          </p>
-        )}
+      <div className="wrapper">
+        <section className="container">
+          {Object.keys(randomGame).length ? (
+            <Game randomGame={randomGame} />
+          ) : (
+            <p className="introText">
+              Hello friend! The point of this application is to help you find a
+              new speedgame. All you have to do is hit the button below and a
+              random game will be selected for you. As of now it only selects
+              from the SNES library (which is objectively the best console
+              anyways), but it may support other platforms in the future. Are
+              you ready to find your new speedgame?
+            </p>
+          )}
+        </section>
+
+        <section className="submit">
+          <form onSubmit={getData}>
+            <button type="submit" className="getGame">
+              Get new speedgame!
+            </button>
+          </form>
+        </section>
       </div>
-
-      {/* <h2>Test</h2>
-      <ul>
-        {dataArray.map((game) => {
-          return <li>{game.name}</li>;
-        })}
-      </ul> */}
+      <footer>
+        Created at{' '}
+        <a href="https://junocollege.com/" target="_blank" rel="noreferrer">
+          Juno College
+        </a>{' '}
+        by{' '}
+        <a
+          href="https://github.com/AHeroOfTime"
+          target="_blank"
+          rel="noreferrer"
+        >
+          AER
+        </a>
+      </footer>
     </div>
   );
 }

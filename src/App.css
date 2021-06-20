@@ -1,3 +1,13 @@
+/* font imports */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* css vars */
+:root {
+  --main-color: #31a38d;
+  --dark: #23272f;
+}
+
+/* setup start */
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -229,12 +239,111 @@ html {
   padding: 0;
 }
 
-h1 {
-  text-align: center;
+.App {
+  position: relative;
+  min-height: 100vh;
 }
 
 .wrapper {
-  max-width: 960px;
-  width: 70%;
+  /* max-width: 960px; */
+  max-width: 1280px;
+  width: 90%;
   margin: 0 auto;
+  /*  */
+  padding-bottom: 8rem;
+}
+
+body {
+  background: var(--dark);
+  color: #fff;
+}
+
+header {
+  background-color: var(--main-color);
+}
+
+h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.2em;
+  text-align: center;
+  margin: 0;
+  padding: 50px 0;
+}
+
+.container {
+  display: grid;
+  font-size: 20px;
+  padding: 75px 0;
+}
+
+.introText {
+  line-height: 1.4;
+}
+
+.gameInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+  /* padding: 100px 0; */
+}
+
+.submit {
+  display: grid;
+  justify-content: center;
+}
+
+.imgContainer {
+  display: grid;
+  justify-content: center;
+}
+
+.imgContainer img {
+  max-width: 100%;
+  max-height: 500px;
+}
+
+.textContainer {
+  /* width: 45%; */
+}
+
+.gameName {
+  font-family: 'Press Start 2P', cursive;
+  margin-bottom: 20px;
+}
+
+.gameDesc {
+  line-height: 1.4;
+}
+
+.getGame {
+  padding: 20px;
+  color: #fff;
+  font-size: 1.2em;
+  font-family: 'Press Start 2P', cursive;
+  background: var(--main-color);
+  border: 3px solid transparent;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.getGame:hover,
+.getGame:focus {
+  cursor: pointer;
+  background: var(--dark);
+  border: 3px solid var(--main-color);
+}
+
+footer {
+  background: var(--main-color);
+  padding: 15px;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+footer a {
+  color: var(--dark);
+  text-decoration: none;
 }

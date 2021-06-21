@@ -2,13 +2,16 @@
 import { useState } from 'react';
 // internal imports
 import Game from './Game';
+import Loader from './Loader';
 
 import './App.css';
 
 function App() {
   // Create state for data and for a single random game
-  const [dataArray, setDataArray] = useState([]);
+  //! dont need this state anymore?
+  // const [dataArray, setDataArray] = useState([]);
   const [randomGame, setRandomGame] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   // Helper Functions
   function getRandomNumber(upperLimit) {
@@ -20,6 +23,10 @@ function App() {
   const getData = async (e) => {
     // prevent default form function
     e.preventDefault();
+    // update state so loader shows
+    setIsLoading(true);
+    setRandomGame({});
+
     // creating proxy
     const proxiedUrl = 'https://www.giantbomb.com/api/games/';
     const url = new URL('https://proxy.hackeryou.com');
@@ -55,6 +62,7 @@ function App() {
   // get single game from array and display it?
   const getRandomGame = (data) => {
     // set var to pass into random number func
+    // 100 is the max the api can outout at a time
     const max = 100;
     // const tempArray = [];
     const randomArrayNumber = getRandomNumber(max);
@@ -73,7 +81,11 @@ function App() {
       <div className="wrapper">
         <section className="container">
           {Object.keys(randomGame).length ? (
+            // once data is loaded, display Game component
             <Game randomGame={randomGame} />
+          ) : isLoading ? (
+            // nested conditional rendering :3
+            <Loader />
           ) : (
             <p className="introText">
               Hello friend! The point of this application is to help you find a

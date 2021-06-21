@@ -280,6 +280,21 @@ h1 {
   line-height: 1.4;
 }
 
+.loader {
+  display: grid;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.loader img {
+  margin: 0 auto;
+}
+
+.loadingText {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.1rem;
+}
+
 .gameInfo {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -300,10 +315,6 @@ h1 {
 .imgContainer img {
   max-width: 100%;
   max-height: 500px;
-}
-
-.textContainer {
-  /* width: 45%; */
 }
 
 .gameName {
@@ -338,6 +349,7 @@ footer {
   padding: 15px;
   text-align: center;
   font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
   position: absolute;
   bottom: 0;
   width: 100%;

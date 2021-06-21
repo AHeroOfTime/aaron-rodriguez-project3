@@ -10,6 +10,12 @@ function Game(props) {
       </div>
       <div className="textContainer">
         <h2 className="gameName">{randomGame.name}</h2>
+        {/* check if game data has aliases and display */}
+        {typeof randomGame.aliases !== 'object' ? (
+          <h3 className="alias">AKA: {randomGame.aliases}</h3>
+        ) : (
+          <h3 className="alias">No known aliases for this game</h3>
+        )}
         <p className="gameDesc">{randomGame.deck}</p>
       </div>
     </div>

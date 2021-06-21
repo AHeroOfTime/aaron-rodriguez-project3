@@ -322,6 +322,10 @@ h1 {
   margin-bottom: 20px;
 }
 
+.alias {
+  margin-bottom: 20px;
+}
+
 .gameDesc {
   line-height: 1.4;
 }
@@ -331,8 +335,8 @@ h1 {
   color: #fff;
   font-size: 1.2em;
   font-family: 'Press Start 2P', cursive;
-  background: var(--main-color);
-  border: 3px solid transparent;
+  background: var(--dark);
+  border: 3px solid var(--main-color);
   border-radius: 10px;
   transition: all 0.2s;
 }
@@ -340,7 +344,7 @@ h1 {
 .getGame:hover,
 .getGame:focus {
   cursor: pointer;
-  background: var(--dark);
+  background: var(--main-color);
   border: 3px solid var(--main-color);
 }
 

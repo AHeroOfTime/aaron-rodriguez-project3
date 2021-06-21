@@ -19,6 +19,12 @@ function App() {
     return randomNum;
   }
 
+  const getRandomOffset = () => {
+    const max = 1778;
+    const randomOffset = getRandomNumber(max);
+    return randomOffset;
+  };
+
   // create function to fetch data
   const getData = async (e) => {
     // prevent default form function
@@ -26,6 +32,9 @@ function App() {
     // update state so loader shows
     setIsLoading(true);
     setRandomGame({});
+    // create a randomOffset value
+    const randomOffsetValue = getRandomOffset();
+    console.log(randomOffsetValue);
 
     // creating proxy
     const proxiedUrl = 'https://www.giantbomb.com/api/games/';
@@ -35,6 +44,9 @@ function App() {
       xmlToJSON: true,
       'params[api_key]': '0a88b2981b009c7b2ccd0dc9eed28515c39fc609',
       'params[platforms]': '9',
+      // params for expanding game selection to max (1779)
+      'params[offset]': randomOffsetValue,
+      'params[limit]': 1,
     });
 
     // Hit api and get data
@@ -55,22 +67,24 @@ function App() {
     const games = await response.json();
     const gamesArray = await games.response.results.game;
     // setDataArray(gamesArray);
+    // console.log(gamesArray);
 
-    getRandomGame(gamesArray);
+    setRandomGame(gamesArray);
+    // getRandomGame(gamesArray);
   };
 
-  // get single game from array and display it?
-  const getRandomGame = (data) => {
-    // set var to pass into random number func
-    // 100 is the max the api can outout at a time
-    const max = 100;
-    // const tempArray = [];
-    const randomArrayNumber = getRandomNumber(max);
-    const singleRandomGame = data[randomArrayNumber];
-    // tempArray.push(singleRandomGame);
+  // ? Dont need this function anymore
+  // // get single game from array and display it?
+  // const getRandomGame = (data) => {
+  //   // set var to pass into random number func
+  //   // 100 is the max the api can outout at a time
+  //   // !working code
+  //   // const max = 100;
+  //   // const randomArrayNumber = getRandomNumber(max);
+  //   // const singleRandomGame = data[randomArrayNumber];
 
-    setRandomGame(singleRandomGame);
-  };
+  //   setRandomGame(data);
+  // };
 
   return (
     <div className="App">

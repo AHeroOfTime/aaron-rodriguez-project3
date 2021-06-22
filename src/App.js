@@ -101,7 +101,7 @@ function App() {
             // nested conditional rendering :3
             <Loader />
           ) : (
-            <p className="introText">
+            <p className="introText card">
               Hello friend! The point of this application is to help you find a
               new speedgame. All you have to do is hit the button below and a
               random game will be selected for you. As of now it only selects

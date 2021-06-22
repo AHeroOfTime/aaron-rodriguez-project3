@@ -1,7 +1,7 @@
 function Game(props) {
   const { randomGame } = props;
   return (
-    <div className="gameInfo">
+    <div className="gameInfo card">
       <div className="imgContainer">
         <img
           src={randomGame.image.original_url}

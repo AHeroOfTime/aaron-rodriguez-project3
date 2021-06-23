@@ -7,19 +7,20 @@ import Loader from './Loader';
 import './App.css';
 
 function App() {
-  // Create state for data and for a single random game
-  //! dont need this state anymore?
-  // const [dataArray, setDataArray] = useState([]);
+  // Create state for a single random game and loading state
   const [randomGame, setRandomGame] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   // Helper Functions
+  // random number generator
   function getRandomNumber(upperLimit) {
     const randomNum = Math.floor(Math.random() * upperLimit);
     return randomNum;
   }
 
+  // create a random offset value to use as a param in fetch call
   const getRandomOffset = () => {
+    // number of games returned from api (snes)
     const max = 1778;
     const randomOffset = getRandomNumber(max);
     return randomOffset;
@@ -34,7 +35,7 @@ function App() {
     setRandomGame({});
     // create a randomOffset value
     const randomOffsetValue = getRandomOffset();
-    console.log(randomOffsetValue);
+    // NOTE: The API is limited to pull in 100 items max at a time, so I came up with a way to randomize the offset value and limit it to 1 game per call. This allows the app to select from all 1779 results, BUT it has to call the API every time. Not ideal, but I don't see an efficient way to pull in all of the games and store them in state.
 
     // creating proxy
     const proxiedUrl = 'https://www.giantbomb.com/api/games/';
@@ -49,42 +50,13 @@ function App() {
       'params[limit]': 1,
     });
 
-    // Hit api and get data
-    // fetch(url)
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((resData) => {
-    //     // resData.response -> object(may need some of this info later)
-    //     // resData.response.results.game -> array of games
-    //     // const resArray = resData.response.results.game;
-    //     setDataArray(resData.response.results.game);
-
-    //     // call function that sets a random game from the array
-    //     getRandomGame(dataArray);
-    //   });
     const response = await fetch(url);
     const games = await response.json();
+    // Not sure if this await actually does anything v
     const gamesArray = await games.response.results.game;
-    // setDataArray(gamesArray);
-    // console.log(gamesArray);
 
     setRandomGame(gamesArray);
-    // getRandomGame(gamesArray);
   };
-
-  // ? Dont need this function anymore
-  // // get single game from array and display it?
-  // const getRandomGame = (data) => {
-  //   // set var to pass into random number func
-  //   // 100 is the max the api can outout at a time
-  //   // !working code
-  //   // const max = 100;
-  //   // const randomArrayNumber = getRandomNumber(max);
-  //   // const singleRandomGame = data[randomArrayNumber];
-
-  //   setRandomGame(data);
-  // };
 
   return (
     <div className="App">
@@ -94,6 +66,7 @@ function App() {
 
       <div className="wrapper">
         <section className="container">
+          {/* check id the game data has returned, if not check loading status */}
           {Object.keys(randomGame).length ? (
             // once data is loaded, display Game component
             <Game randomGame={randomGame} />
@@ -113,7 +86,7 @@ function App() {
         </section>
 
         <section className="submit">
-          <form onSubmit={getData}>
+          <form onSubmit={getData} name="gameForm">
             <button type="submit" className="getGame">
               Get new speedgame!
             </button>

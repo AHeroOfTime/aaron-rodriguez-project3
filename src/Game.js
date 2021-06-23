@@ -1,5 +1,5 @@
-function Game(props) {
-  const { randomGame } = props;
+// destructuring the randomGame from props
+function Game({ randomGame }) {
   return (
     <div className="gameInfo card">
       <div className="imgContainer">

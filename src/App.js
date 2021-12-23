@@ -41,8 +41,8 @@ function App() {
     const proxiedUrl = 'https://www.giantbomb.com/api/games/';
     const url = new URL('https://proxy.hackeryou.com');
     url.search = new URLSearchParams({
-      reqUrl: proxiedUrl,
       xmlToJSON: true,
+      reqUrl: proxiedUrl,
       'params[api_key]': '0a88b2981b009c7b2ccd0dc9eed28515c39fc609',
       'params[platforms]': '9',
       // params for expanding game selection to max (1779)
